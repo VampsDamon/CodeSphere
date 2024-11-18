@@ -6,6 +6,7 @@ import Courses from "./components/Courses/Courses"
 import Footer from "./components/Layouts/Footer/Footer"
 import LogIn from "./components/auth/LogIn"
 import Register from "./components/auth/Register"
+import ForgetPassword from "./components/auth/ForgetPassword"
 function App() {
  
 
@@ -17,6 +18,8 @@ function App() {
        <Route path="/courses" element={<Courses/>} />
        <Route path="/login" element={<LogIn/>} />
        <Route path="/register" element={<Register/>} />
+       <Route path="/forgetPassword" element={<ForgetPassword/>} />
+       <Route path="/resetPassword/:token" element={<ForgetPassword/>} />
      </Routes>
      <Footer/>
    </Router>

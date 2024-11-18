@@ -7,8 +7,10 @@ import {
   Heading,
   Input,
   Text,
+  textDecoration,
   VStack,
 } from "@chakra-ui/react";
+import { color } from "framer-motion";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 export const fileUploadCSS = {
@@ -20,10 +22,12 @@ export const fileUploadCSS = {
     backgroundColor:"white",
     outline:"none",
     "border": "none",
+    textTransform:"uppercase",
+    
 };
 
 const fileUploadStyle = {
-  "&::file-selector-button": fileUploadCSS,
+  "&::file-selector-button": {...fileUploadCSS,color:"purple"},
 };
 
 const Register = () => {
