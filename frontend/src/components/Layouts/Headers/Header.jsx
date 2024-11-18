@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ColorModeSwitcher from "../../../../ColorModeSwitcher";
+import { RiDashboardFill, RiLogoutBoxLine } from "react-icons/ri";
 import {
   Button,
   Drawer,
@@ -15,18 +16,24 @@ import {
 import { RiMenu5Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-const LinkButton=({url="/",title="home"})=>{
+const LinkButton = ({ url = "/", title = "home",onClose }) => {
   return (
-    <Link to={url}>
-      <Button  variant={"ghost"}>{title}</Button>
+    <Link onClick={onClose} to={url}>
+      <Button variant={"ghost"}>{title}</Button>
     </Link>
   );
-}
-
+};
 
 const Header = () => {
   const { onClose, onOpen, isOpen } = useDisclosure();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const user = {
+    role: "admin",
+  };
+  const logoutHandler=()=>{
+    console.log("User logged out")
+    onClose();
+  }
   return (
     <>
       <ColorModeSwitcher />
@@ -42,12 +49,7 @@ const Header = () => {
       >
         <RiMenu5Fill />
       </Button>
-      <Drawer
-        placement="left"
-        onClose={onClose}
-        isOpen={isOpen}
-        size={"xs"}
-      >
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen} size={"xs"}>
         <DrawerOverlay backdropFilter={"blur(3px)"} />
         <DrawerContent>
           <DrawerHeader
@@ -62,11 +64,20 @@ const Header = () => {
 
           <DrawerBody>
             <VStack alignItems={"flex-start"} spacing={4}>
-              <LinkButton url="/" title="Home" />
-              <LinkButton url="/courses" title="Browse All Courses" />
-              <LinkButton url="/request" title="Request a Course" />
-              <LinkButton url="/contact" title="Contact Us" />
-              <LinkButton url="/about" title="About Us" />
+              <LinkButton onClose={onClose} url="/" title="Home" />
+              <LinkButton
+                onClose={onClose}
+                url="/courses"
+                title="Browse All Courses"
+              />
+              <LinkButton
+                onClose={onClose}
+                url="/request"
+                title="Request a Course"
+              />
+              <LinkButton onClose={onClose} url="/contact" title="Contact Us" />
+              <LinkButton onClose={onClose} url="/about" title="About Us" />
+
               <HStack
                 position={"absolute"}
                 bottom={"2rem"}
@@ -76,15 +87,42 @@ const Header = () => {
               >
                 {isAuthenticated ? (
                   <>
-                  
+                    <VStack>
+                      <HStack>
+                        <Link onClick={onClose} to="/profile">
+                          <Button variant={"ghost"} colorScheme="yellow">
+                            Profile
+                          </Button>
+                        </Link>
+                        <p>OR</p>
+                        <Button
+                          variant={"ghost"}
+                          onClick={() => {
+                            onClose();
+                            logoutHandler();
+                          }}
+                        >
+                          <RiLogoutBoxLine style={{ margin: "3px" }} />
+                          Logout
+                        </Button>
+                      </HStack>
+                      {user && user.role == "admin" && (
+                        <Link onClick={onClose} to="/admin/dashboard">
+                          <Button colorScheme="purple" variant={"ghost"}>
+                            <RiDashboardFill style={{ margin: "3px" }} />
+                            Dashboard
+                          </Button>
+                        </Link>
+                      )}
+                    </VStack>
                   </>
                 ) : (
                   <>
-                    <Link to="/login">
+                    <Link onClick={onClose} to="/login">
                       <Button colorScheme="yellow">Login</Button>
                     </Link>
                     <p>OR</p>
-                    <Link to="/login">
+                    <Link onClick={onClose} to="/register">
                       <Button colorScheme="yellow">Sign Up</Button>
                     </Link>
                   </>
