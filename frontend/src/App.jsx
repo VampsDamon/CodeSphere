@@ -7,23 +7,39 @@ import Footer from "./components/Layouts/Footer/Footer"
 import LogIn from "./components/auth/LogIn"
 import Register from "./components/auth/Register"
 import ForgetPassword from "./components/auth/ForgetPassword"
+import Contact from "./components/Contact/Contact"
+import RequestCourse from "./components/RequestCourse/RequestCourse"
+import About from "./components/About/About"
+import Subscibe from "./components/Payments/Subscibe"
+import PaymentSucess from "./components/Payments/PaymentSucess"
+import PaymentFail from "./components/Payments/PaymentFail"
+import NotFound from "./components/Layouts/NotFound/NotFound"
+
 function App() {
  
 
   return (
-   <Router>
-    <Header/>
-     <Routes>
-       <Route path="/" element={<Home/>} />
-       <Route path="/courses" element={<Courses/>} />
-       <Route path="/login" element={<LogIn/>} />
-       <Route path="/register" element={<Register/>} />
-       <Route path="/forgetPassword" element={<ForgetPassword/>} />
-       <Route path="/resetPassword/:token" element={<ForgetPassword/>} />
-     </Routes>
-     <Footer/>
-   </Router>
-  )
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/requestCourse" element={<RequestCourse />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgetPassword" element={<ForgetPassword />} />
+        <Route path="/resetPassword/:token" element={<ForgetPassword />} />
+        <Route path="/subscribe" element={<Subscibe />} />
+        <Route path="/paymentSuccess" element={<PaymentSucess />} />
+        <Route path="/paymentFail" element={<PaymentFail />} />
+        <Route path="*" element={<NotFound />} />
+
+      </Routes>
+      <Footer />
+    </Router>
+  );
 }
 
 export default App
