@@ -72,7 +72,7 @@ const Header = () => {
               />
               <LinkButton
                 onClose={onClose}
-                url="/request"
+                url="/requestCourse"
                 title="Request a Course"
               />
               <LinkButton onClose={onClose} url="/contact" title="Contact Us" />

@@ -7,7 +7,7 @@ import { CgProfile } from 'react-icons/cg'
 
 const Footer = () => {
   return (
-    <Box  p={"4"}  padding={4} background={"blackAlpha.900"}>
+    <Box  p={"4"}   background={"blackAlpha.900"}>
       <Stack direction={["column","row"]} justifyContent={"space-between"} alignItems={"center"}  >
         <VStack alignItems={["center","start"]}>
           <Heading
@@ -25,16 +25,16 @@ const Footer = () => {
         </VStack>
         <HStack color={"white"} fontSize={["2xl","2xl","4xl"]} gap={6}>
           <a
-            target="_blank"
+            target="blank"
             href="https://vampsdamon.github.io/PortfolioShahid_khan"
           >
             <CgProfile />
           </a>
-          <a target="_blank" href="https://github.com/VampsDamon">
+          <a target="blank" href="https://github.com/VampsDamon">
             <FaGithub />
           </a>
           <a
-            target="_blank"
+            target="blank"
             href="https://www.linkedin.com/in/md-shahid-khan-1a471b153/"
           >
             <FaLinkedin />
