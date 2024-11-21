@@ -15,9 +15,16 @@ import PaymentSucess from "./components/Payments/PaymentSucess"
 import PaymentFail from "./components/Payments/PaymentFail"
 import NotFound from "./components/Layouts/NotFound/NotFound"
 import CoursePage from "./components/CoursePage/CoursePage"
+import Profile from "./components/Profile/Profile"
+import ChangePassword from "./components/Profile/ChangePassword"
+import UpdateProfile from "./components/Profile/UpdateProfile"
+import Dashboard from "./components/Admin/Dashboard/Dashboard"
+import CreateCourse from "./components/Admin/CreateCourse/CreateCourse"
+import AdminCourses from "./components/Admin/AdminCourses/AdminCourses"
+import Users from "./components/Admin/Users/Users"
 
 function App() {
-    window.addEventListener("contextmenu",e=>event.preventDefault()) 
+    // window.addEventListener("contextmenu",e=>event.preventDefault()) 
 
   return (
     <Router>
@@ -37,6 +44,15 @@ function App() {
         <Route path="/paymentSuccess" element={<PaymentSucess />} />
         <Route path="/paymentFail" element={<PaymentFail />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
+        <Route path="/updateProfile" element={<UpdateProfile />} />
+
+        {/* ******* Admin Routes ****** */}
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/createCourse" element={<CreateCourse />} />
+        <Route path="/admin/courses" element={<AdminCourses />} />
+        <Route path="/admin/users" element={<Users />} />
 
       </Routes>
       <Footer />
