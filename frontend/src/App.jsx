@@ -14,9 +14,10 @@ import Subscibe from "./components/Payments/Subscibe"
 import PaymentSucess from "./components/Payments/PaymentSucess"
 import PaymentFail from "./components/Payments/PaymentFail"
 import NotFound from "./components/Layouts/NotFound/NotFound"
+import CoursePage from "./components/CoursePage/CoursePage"
 
 function App() {
- 
+    window.addEventListener("contextmenu",e=>event.preventDefault()) 
 
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/course/:id" element={<CoursePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/requestCourse" element={<RequestCourse />} />

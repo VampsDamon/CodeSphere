@@ -46,6 +46,7 @@ const Header = () => {
         top={6}
         left={6}
         onClick={onOpen}
+        zIndex={"overlay"}
       >
         <RiMenu5Fill />
       </Button>
