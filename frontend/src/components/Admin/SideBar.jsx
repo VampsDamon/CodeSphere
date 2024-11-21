@@ -11,7 +11,9 @@ import { Link, useLocation } from "react-router-dom";
 const SideBar = () => {
   const location = useLocation();
   return (
-    <VStack spacing={8} p={16} boxShadow={"-2px 0px 10px rgba(107,70,193,0.5)"}>
+    <VStack spacing={8} p={16} 
+       boxShadow={"-2px 0px 10px rgba(107,70,193,0.5)"}
+       >
       <LinkButton
         active={location.pathname === "/admin/dashboard"}
         url={"dashboard"}
