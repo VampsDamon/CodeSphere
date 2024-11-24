@@ -68,14 +68,11 @@ const Users = () => {
       <Box p={["0", "16"]} overflowX={"auto"}>
         <Heading
           textTransform={"uppercase"}
-          children="Create Course"
+          children="All Users"
           my={4}
           textAlign={["center", "center", "left"]}
         />
-        <TableContainer
-         
-          w={["100vw", "100vw", "full"]}
-        >
+        <TableContainer w={["100vw", "100vw", "full"]}>
           <Table variant={"simple"}>
             <TableCaption>All available users in the database</TableCaption>
             <Thead>
