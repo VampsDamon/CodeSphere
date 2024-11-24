@@ -53,3 +53,24 @@
 .course:hover{
     transform: translateY(-10px);
 }
+
+.scrollable-table-container {
+  overflow-x: auto; /* Allow horizontal scrolling */
+  overflow-y: hidden; /* Disable vertical scrolling */
+  white-space: nowrap; /* Prevent content wrapping */
+  scrollbar-width: thin; /* For Firefox: make scrollbar less intrusive */
+  -ms-overflow-style: none; /* For IE and Edge: hide scrollbar */
+}
+
+.scrollable-table-container::-webkit-scrollbar {
+  height: 8px; /* Customize scrollbar height */
+}
+
+.scrollable-table-container::-webkit-scrollbar-thumb {
+  background: #888; /* Customize scrollbar color */
+  border-radius: 4px;
+}
+
+.scrollable-table-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Change scrollbar color on hover */
+}

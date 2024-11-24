@@ -10,7 +10,7 @@ const AdminCourses = () => {
         cursor: `url(${cursor}),default`,
       }}
       minH={"100vh"}
-      templateColumns={["1fr", "5fr 1fr"]}
+      templateColumns={["1fr", "1fr","5fr 1fr"]}
     >
       <Box></Box>
       <SideBar />

@@ -8,10 +8,11 @@ import { DoughnutChart, LineChart } from './Chart'
 
 const DataBox = ({ title, qty, qtyPercentage, profit }) => (
   <Box
-    w={["full", "50%","50%" ,"30%"]}
+    w={["full", "80%","50%" ,"30%"]}
     boxShadow="-2px 0px 10px rgba(107,70,193,0.5)"
     p={8}
     borderRadius={"lg"}
+    mx={'auto'}
   >
     <Text children={title} />
     <HStack>
@@ -52,7 +53,7 @@ const Dashboard = () => {
       templateColumns={["1fr", "1fr", "5fr 1fr"]}
       overflowX={"hidden"}
     >
-      <Box boxSizing="border-box" py={16} px={["4", "4", "0"]}>
+      <Box  overflowX={'hidden'} boxSizing="border-box" py={16} px={["4", "4", "0"]}>
         <Text opacity={0.5} textAlign={"center"}>
           Last change was on {String(new Date()).split("G")[0]}{" "}
         </Text>
@@ -133,7 +134,7 @@ const Dashboard = () => {
              </Box>
         </Stack>
       </Box>
-      <SideBar  />
+      <SideBar   />
     </Grid>
   );
 }
