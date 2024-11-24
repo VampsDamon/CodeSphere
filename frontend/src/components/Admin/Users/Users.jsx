@@ -18,13 +18,7 @@ import cursor from "../../assets/images/cursor.png";
 import SideBar from "../SideBar";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 const Users = () => {
-  // const boxRef=useRef();
-  //  const handleWheel = (event) => {
-  //    if (boxRef.current) {
-  //      event.preventDefault()
-  //      boxRef.current.scrollLeft += event.deltaY;
-  //    }
-  //  };
+  
   const users=[
     {
       _id:"@3sjkdjjd",
@@ -79,10 +73,7 @@ const Users = () => {
           textAlign={["center", "center", "left"]}
         />
         <TableContainer
-          scrollBehavior={"smooth"}
-          // onWheel={handleWheel}
-          // ref={boxRef}
-          className="scrollable-table-container"
+         
           w={["100vw", "100vw", "full"]}
         >
           <Table variant={"simple"}>
@@ -111,6 +102,12 @@ const Users = () => {
 };
 
 function Row({item}) {
+  const changeRoleHandler=(id)=>{
+    console.log(id);
+  }
+  const deleteHandler = (id) => {
+    console.log(id);
+  };
   return (
     <Tr>
       <Td>#{item._id}</Td>
@@ -119,13 +116,17 @@ function Row({item}) {
       <Td>{item.role}</Td>
       <Td>{item.subscription.status === "active" ? "Active" : "Not Active"}</Td>
       <Td isNumeric>
-        <HStack justifyContent={'flex-end'}>
-           <Button variant={'outline'} color={'purple.500'}>
-             Change Role
-           </Button>
-           <Button>
-             <RiDeleteBin7Fill/>
-           </Button>
+        <HStack justifyContent={"flex-end"}>
+          <Button
+            onClick={() => changeRoleHandler(item._id)}
+            variant={"outline"}
+            color={"purple.500"}
+          >
+            Change Role
+          </Button>
+          <Button onClick={() => deleteHandler(item._id)}>
+            <RiDeleteBin7Fill />
+          </Button>
         </HStack>
       </Td>
     </Tr>
