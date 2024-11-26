@@ -3,7 +3,7 @@ import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../utils/ErrorHandler.js";
 
 export const getAllCourses = catchAsyncError(async (req, res, next) => {
-  const courses = await Course.find();
+  const courses = await Course.find().select("-lectures");
   res.status(200).json({
     success: true,
     courses,

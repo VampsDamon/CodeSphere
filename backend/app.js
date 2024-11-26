@@ -1,6 +1,7 @@
 import express from "express";
 import { config } from "dotenv";
 import courseRouter from "./routes/CourseRoutes.js";
+import UserRouter from "./routes/UserRoutes.js";
 import ErrorMiddleware from "./middlewares/Error.js";
 
 const app = express();
@@ -15,7 +16,7 @@ app.use(express.urlencoded({
 }))
 
 app.use("/api/v1/course", courseRouter);
-app.use("/api/v1/user", courseRouter);
+app.use("/api/v1/user", UserRouter);
 
 
 
