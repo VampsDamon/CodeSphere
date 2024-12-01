@@ -22,6 +22,7 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard"
 import CreateCourse from "./components/Admin/CreateCourse/CreateCourse"
 import AdminCourses from "./components/Admin/AdminCourses/AdminCourses"
 import Users from "./components/Admin/Users/Users"
+import Abhshekh from "./tempCHildRoutes/Abhshekh"
 
 function App() {
     // window.addEventListener("contextmenu",e=>event.preventDefault()) 
@@ -53,6 +54,8 @@ function App() {
         <Route path="/admin/createCourse" element={<CreateCourse />} />
         <Route path="/admin/courses" element={<AdminCourses />} />
         <Route path="/admin/users" element={<Users />} />
+        <Route path="/abhi" element={<Abhshekh />} />
+        
 
       </Routes>
       <Footer />

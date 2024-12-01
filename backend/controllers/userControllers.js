@@ -36,41 +36,65 @@ export const login = catchAsyncError(async (req, res, next) => {
   if (!email || !password)
     return next(new ErrorHandler("Please fill all required fields", 400));
 
-  
-
   const user = await User.findOne({ email }).select("+password");
   if (!user) return next(new ErrorHandler("Incorrect Email or Password", 409));
-  
-  if(!(await user.comparePassword(password)))
-   return next(new ErrorHandler("Incorrect Email or Password", 401));
+
+  if (!(await user.comparePassword(password)))
+    return next(new ErrorHandler("Incorrect Email or Password", 401));
 
   sendToken(res, user, `Welcome back ,${user.name}`, 200);
-
 });
 
-export const logout=catchAsyncError(async (req,res,next)=>{
-   res
-     .status(200)
-     .cookie("token", null, {
-       expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
-       httpOnly: true,
-       secure: true,
-       sameSite: "none",
-     }).json({
-        success:true,
-        message:"Logged out Successfully",
-     })
-})
+export const logout = catchAsyncError(async (req, res, next) => {
+  res
+    .status(200)
+    .clearCookie("token")
+    .json({
+      success: true,
+      message: "Logged out Successfully",
+    });
+});
 
+export const getMyProfile = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user._id);
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
 
-export const getMyProfile=catchAsyncError(async (req,res,next)=>{
-    const user =await User.findById(req.id); 
-    res
-     .status(200)
-     .json({
-        success:true,
-        user
-     })
-})
+export const changePassword = catchAsyncError(async (req, res, next) => {
+  const { oldPassword, newPassword } = req.body;
+  if (!oldPassword || !newPassword)
+    return next(new ErrorHandler("Please fill all required fields", 400));
+  const user = await User.findById(req.user._id).select("+password");
 
+  if (!(await user.comparePassword(oldPassword))) {
+    return next(new ErrorHandler("Incorrect Old password ", 400));
+  }
+  
+  user.password=newPassword;
+  user.save();
+  
+  res.status(200).json({
+    success: true,
+    message: "Password updated successfully",
+  });
+});
+export const updateProfile = catchAsyncError(async (req, res, next) => {
+  const { name, email } = req.body;
+  if (!name || !email)
+    return next(new ErrorHandler("Please fill all required fields", 400));
+  const user = await User.findById(req.user._id).select("+password");
 
+  
+  
+  user.email=email;
+  user.name=name;
+  user.save();
+  
+  res.status(200).json({
+    success: true,
+    message: "Profile updated successfully",
+  });
+});

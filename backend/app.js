@@ -21,6 +21,5 @@ app.use("/api/v1/course", courseRouter);
 app.use("/api/v1/user", UserRouter);
 
 
-
 app.use(ErrorMiddleware);
 export default app;

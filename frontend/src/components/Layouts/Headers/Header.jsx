@@ -78,6 +78,7 @@ const Header = () => {
               />
               <LinkButton onClose={onClose} url="/contact" title="Contact Us" />
               <LinkButton onClose={onClose} url="/about" title="About Us" />
+              <LinkButton onClose={onClose} url="/abhi" title="Go to Abhishekh" />
 
               <HStack
                 position={"absolute"}
