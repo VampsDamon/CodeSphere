@@ -92,6 +92,8 @@ schema.methods.getResetToken = async function () {
     .digest("hex");
 
     this.resetPasswordExpire=Date.now()+15*60*1000;
+    
+    this.save()
 
     return resetToken;
 };
