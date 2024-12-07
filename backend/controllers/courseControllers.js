@@ -37,3 +37,27 @@ export const createCourse =catchAsyncError(  async (req, res, next) => {
     });
   
 });
+
+
+//Add lecture .Delete Course ,Get Course Details
+
+export const getCourseLectures=catchAsyncError(async (req,res,next)=>{
+  
+  const course=await Course.findById(req.params.id);
+
+  if(!course) return next(new ErrorHandler("Invalid Course Id ",404));
+
+  course.views+=1
+
+  
+  res.status(200).json({
+    success: true,
+    lectures:course.lectures,
+  });
+})
+
+export const createCourseLectures=catchAsyncError(async(req,res,next)=>{
+
+})
+
+//Delete Lecture
