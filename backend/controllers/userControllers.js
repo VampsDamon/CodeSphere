@@ -6,6 +6,8 @@ import { sendEmail } from "../utils/sendEmail.js";
 import { sendToken } from "../utils/SendToken.js";
 import validator from "validator";
 import crypto from "crypto"
+import {Course} from "../models/Course.js"
+
 
 export const register = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -177,3 +179,52 @@ export const resetPassword = catchAsyncError(async (req, res, next) => {
     message: `Password Changed Successfully `,
   });
 });
+
+
+export const addToPlaylist=catchAsyncError(async(req,res,next)=>{
+   
+  const user=await User.findById(req.user._id);
+  
+  const course=await Course.findById(req.body.id); 
+
+  if(!course) return next(new ErrorHandler("Invalid Course ID",404))
+  
+  const itemExist=user.playlist.find(item=>item.courseId.toString()===course._id.toString())
+  
+  
+  if(itemExist) return next(new ErrorHandler("Course is already Exist",409))
+
+  user.playlist.push({
+    courseId:course._id,
+    poster:course.poster.url
+  })
+
+  await user.save();
+  
+
+  res.status(200).json({
+    success: true,
+    message: `Course is added to Playlist successfully`,
+  });
+})
+export const removeFromPlaylist=catchAsyncError(async(req,res,next)=>{
+   
+  //Get a ID (From Body)
+  const {id}=req.body;
+
+  const course=await Course.findById(id);
+
+  if(!course) return next(new ErrorHandler("Invalid Course Id",404));
+  
+  const user=await User.findById(req.user._id);
+
+  const newPlaylist=user.playlist.filter(item=>item.courseId.toString()!==course._id.toString());
+
+  user.playlist=newPlaylist;
+  user.save();
+
+  res.status(200).json({
+    success: true,
+    message: `Course is removed from Playlist successfully`,
+  });
+})
