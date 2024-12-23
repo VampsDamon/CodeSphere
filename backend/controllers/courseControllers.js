@@ -125,23 +125,23 @@ export const deleteCourse = catchAsyncError(async (req, res, next) => {
 
 // Delete Lecture
 export const deleteLecture = catchAsyncError(async (req, res, next) => {
-  console.log("Delete Lecture Route")
-  // const { lecture_id,course_id } = req.query;
-  // console.log(course_id)
-  // const course = await Course.findById(course_id);
 
-  // if (!course) return next(new ErrorHandler("Course not Found ", 404));
+  const { lecture_id,course_id } = req.query;
+
+  const course = await Course.findById(course_id);
+
+  if (!course) return next(new ErrorHandler("Course not Found ", 404));
   
-  // const lecture=course.lectures.find(lec=>lec._id.toString()===lecture_id.toString())
-  // await cloudinary.v2.uploader.destroy(lecture.video.public_id,{
-  //   resource_type:"video"
-  // })
-  // course.lectures = course.lectures.filter(
-  //   (lecture) => lecture._id.toString() !== lecture_id.toString()
-  // );
+  const lecture=course.lectures.find(lec=>lec._id.toString()===lecture_id.toString())
+  await cloudinary.v2.uploader.destroy(lecture.video.public_id,{
+    resource_type:"video"
+  })
+  course.lectures = course.lectures.filter(
+    (lecture) => lecture._id.toString() !== lecture_id.toString()
+  );
 
-  // course.numOfVideos=course.lectures.length;
-  // await course.save();
+  course.numOfVideos=course.lectures.length;
+  await course.save();
   res.status(200).json({
     success: true,
     message: "Lecture Deleted successfully",

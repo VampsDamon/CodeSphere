@@ -15,12 +15,15 @@ const router = Router();
 router.use(isAuthenticated);
 router.get("/courses", getAllCourses);
 router.post("/createCourse", authorizedAdmin, signalUpload, createCourse);
+
+
+router.delete("/deletelecture",authorizedAdmin,deleteLecture)
+
 router
   .route("/:id")
   .get(getCourseLectures)
   .post(signalUpload, addLecture)
   .delete(authorizedAdmin, deleteCourse);
 
-router.delete("/deleteLecture",authorizedAdmin,deleteLecture);
 
 export default router;
