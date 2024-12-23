@@ -11,7 +11,17 @@ export const isAuthenticated = catchAsyncError(async(req, res, next) => {
   
   const decoded = jwt.verify(token,process.env.JWT_SECRET);
   req.user = await User.findById(decoded._id);  
-  console.log(req.user);
   next();
 });
+
+
+export const authorizedAdmin=(req,res,next)=>{
+  // console.log("Admin Authentication")
+  if(req.user.role !=='admin'){
+    return next(new ErrorHandler(`${req.user.role} is not allowed to access this resources`,403))
+  }
+  // console.log(req.user)
+
+  next()
+}
 
