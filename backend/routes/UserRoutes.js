@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { addToPlaylist, changePassword, forgetPassword, getMyProfile, login, logout, register, removeFromPlaylist, resetPassword, updateProfile, updateProfilePicture } from "../controllers/userControllers.js";
 import { isAuthenticated } from "../middlewares/auth.js";
+import multer from "multer";
+import signalUpload from "../middlewares/multer.js";
 
 const router=Router();
 
-router.post("/register",register)
+router.post("/register", signalUpload, register);
 router.post("/login",login)
 router.get("/logout",logout)
 router.get("/me",isAuthenticated,getMyProfile)
